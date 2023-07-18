@@ -27,19 +27,24 @@ function ExpensesOverview() {
         options={{
           title: "Recent Expenses",
           tabBarLabel: "Recent",
-          tabBarIcon: ({ color, size }) => {
-            <Ionicons name="hourglass" size={size} color={color} />;
-          },
+          tabBarLabelStyle: { marginBottom: 2 },
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="hourglass" size={size} color={color} />
+          ),
         }}
       />
-      <Tab.Screen name="AllExpenses" component={AllExpenses}
-       options={{
-        title: "All Expenses",
-        tabBarLabel: "All Expenses",
-        tabBarIcon: ({ color, size }) => {
-          <Ionicons name="calendar" size={size} color={color} />;
-        },
-      }} />
+      <Tab.Screen
+        name="AllExpenses"
+        component={AllExpenses}
+        options={{
+          title: "All Expenses",
+          tabBarLabel: "All Expenses",
+          tabBarLabelStyle: { marginBottom: 2 },
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="calendar" size={size} color={color} />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 }
