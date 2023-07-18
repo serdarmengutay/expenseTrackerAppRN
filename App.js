@@ -8,6 +8,7 @@ import RecentExpenses from "./src/screens/RecentExpenses";
 import AllExpenses from "./src/screens/AllExpenses";
 import { GlobalStyles } from "./src/constants/styles";
 import IconButton from "./src/components/UI/IconButton";
+import ExpensesContextProvider from "./src/store/expenses-context";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -58,7 +59,8 @@ function ExpensesOverview() {
 export default function App() {
   return (
     <>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
+      <ExpensesContextProvider>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{
           headerStyle: {backgroundColor: GlobalStyles.colors.primary500},
@@ -76,6 +78,7 @@ export default function App() {
           }} />
         </Stack.Navigator>
       </NavigationContainer>
+      </ExpensesContextProvider>
     </>
   );
 }
