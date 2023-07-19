@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import IconButton from "../components/UI/IconButton";
 import { GlobalStyles } from "../constants/styles";
 import Button from "../components/UI/Button";
-import { ExpensesContext } from '../store/expenses-context'
+import { ExpensesContext } from "../store/expenses-context";
 import ExpenseForm from "../components/ManageExpense/ExpenseForm";
 
 function ManageExpense({ route, navigation }) {
@@ -24,25 +24,21 @@ function ManageExpense({ route, navigation }) {
   function cancelHandler() {
     navigation.goBack();
   }
-  function confirmHandler() {
+  function confirmHandler(expenseData) {
     if (isEditing) {
-      expensesCtx.updateExpense(editedExpenseId, { description: 'Test!!!', amount: 29.99, date: new Date('2023-07-19') } );
+      expensesCtx.updateExpense(editedExpenseId, expenseData);
     } else {
-      expensesCtx.addExpense({ description: 'Test', amount: 19.99, date: new Date('2023-07-19')});
+      expensesCtx.addExpense(expenseData);
     }
     navigation.goBack();
   }
 
   return (
     <View style={styles.container}>
-      <ExpenseForm />
-      <View style={styles.buttons}>
-        <Button style={styles.button} mode="flat" onPress={cancelHandler}>
-          Cancel
-        </Button>
-        <Button onPress={confirmHandler}>{isEditing ? "Update" : "Add"}</Button>
-      </View>
-
+      <ExpenseForm 
+      onSubmit={confirmHandler}
+      submitButtonLabel={isEditing ? 'Update' : 'Add'}
+      onCancel={cancelHandler} />
       {isEditing && (
         <View style={styles.deleteContainer}>
           <IconButton
@@ -63,15 +59,7 @@ const styles = StyleSheet.create({
     padding: 24,
     backgroundColor: GlobalStyles.colors.primary800,
   },
-  button: {
-    minWidth: 120,
-    marginHorizontal: 8,
-  },
-  buttons: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
+
   deleteContainer: {
     marginTop: 16,
     paddingTop: 8,
@@ -82,5 +70,3 @@ const styles = StyleSheet.create({
 });
 
 export default ManageExpense;
-
-
