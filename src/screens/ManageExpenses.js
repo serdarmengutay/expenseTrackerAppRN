@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import IconButton from "../components/UI/IconButton";
 import { GlobalStyles } from "../constants/styles";
 import Button from "../components/UI/Button";
-import ExpensesContext from '../store/expenses-context'
+import { ExpensesContext } from '../store/expenses-context'
 
 function ManageExpense({ route, navigation }) {
   const expensesCtx = useContext(ExpensesContext);
@@ -80,3 +80,5 @@ const styles = StyleSheet.create({
 });
 
 export default ManageExpense;
+
+
